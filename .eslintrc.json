@@ -1,0 +1,73 @@
+{
+  "extends": "airbnb-base",
+  "plugins": [
+    "import",
+    "node"
+  ],
+  "env": {
+    "node": true,
+    "jquery": true,
+    "browser": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "script",
+    "ecmaFeatures": {
+      "modules": false,
+      "generators": false
+    }
+  },
+  "rules": {
+    "strict": ["error", "global"],
+    "indent": ["error", 2, {
+      "SwitchCase": 1,
+      "VariableDeclarator": 1,
+      "outerIIFEBody": 1,
+      "MemberExpression": 1,
+      "FunctionDeclaration": {
+        "parameters": 1,
+        "body": 1
+      },
+      "FunctionExpression": {
+        "parameters": 1,
+        "body": 1
+      },
+      "CallExpression": {
+        "arguments": 1
+      }
+    }],
+    "max-len": ["error", 80, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false,
+      "ignoreRegExpLiterals": true,
+      "ignoreStrings": false,
+      "ignoreTemplateLiterals": true
+    }],
+    "no-param-reassign": ["error", {
+      "props": false
+    }],
+    "no-use-before-define": ["error", {
+      "functions": false,
+      "classes": false
+    }],
+    "consistent-return": "off",
+    "arrow-parens": ["error", "as-needed"],
+
+    "prefer-destructuring": "off",
+    "prefer-rest-params": "off",
+    "prefer-spread": "off",
+    "prefer-arrow-callback": ["error", {
+      "allowNamedFunctions": true
+    }],
+    "rest-spread-spacing": "off",
+    "symbol-description": "off",
+    "sort-imports": "off",
+    "yield-star-spacing": "off",
+
+    "node/exports-style": ["error", "module.exports"],
+    "node/no-deprecated-api": "error",
+    "node/no-missing-require": "error",
+    "node/no-unsupported-features": "error"
+  }
+}
