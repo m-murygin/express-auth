@@ -1,0 +1,7 @@
+.git
+node_modules
+public/components
+tmp
+project.sublime-workspace
+project.sublime-project
+*.log

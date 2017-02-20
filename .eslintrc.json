@@ -51,6 +51,7 @@
       "functions": false,
       "classes": false
     }],
+    "no-console": "off",
     "consistent-return": "off",
     "arrow-parens": ["error", "as-needed"],
 
