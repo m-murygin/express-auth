@@ -1,0 +1,11 @@
+version: '2'
+services:
+  node:
+    environment:
+      - NODE_ENV=development
+    volumes:
+     - .:/app
+    entrypoint:
+      - npm
+      - run
+      - watch

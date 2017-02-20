@@ -1,0 +1,10 @@
+{
+  "name": "express-auth",
+  "description": "Demo express authentication app",
+  "main": "app.js",
+  "authors": [
+    "Maksim Murygin"
+  ],
+  "license": "MIT",
+  "homepage": ""
+}
