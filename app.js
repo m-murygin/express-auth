@@ -6,8 +6,14 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const connectFlash = require('connect-flash');
+const expressMessages = require('express-messages');
+const expressValidator = require('express-validator');
 
-const index = require('./routes/index');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users.js');
 
 const app = express();
 
@@ -20,7 +26,45 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+// Handle Express Session
+app.use(expressSession({
+  secret: 'sdfj234v',
+  saveUninitialized: true,
+  resave: false,
+}));
+
+// Handle Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      const namespace = param.split('.');
+      const root = namespace.shift();
+      let formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+app.use(connectFlash());
+
+//TODO: do we need this library?
+app.use(function (req, res, next) {
+  res.locals.messages = expressMessages(req, res);
+  next();
+});
+
+// Routes
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
